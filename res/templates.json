@@ -1,0 +1,44 @@
+{
+    "templates":
+    [
+    {
+        "name": "Create a new blank presentation",
+        "inputs": [
+            {
+                "name": "filename",
+                "description": "Enter the filename of your slides.",
+                "placeholder": "Filename"
+            },
+            {
+                "name": "title",
+                "description": "Enter the title of your slides.",
+                "placeholder": "Title"
+            },
+            {
+                "name": "subtitle",
+                "description": "Enter the subtitle of your slides.",
+                "placeholder": "Subtitle"
+            },
+            {
+                "name": "author",
+                "description": "Enter the name of the author.",
+                "placeholder": "Author Name"
+            },            {
+                "name": "affilation",
+                "description": "Enter the name of your affilation or institute.",
+                "placeholder": "Affilation Name"
+            }
+        ],
+        "files": [
+            {
+                "filename": "${filename}-deck.md",
+                "contents": "---\ntitle:\t\t${title}\nsubtitle:\t${subtitle}\nauthor:\t\t${author}\naffilation:\t${affilation}\n\nfeedback:\n\tdeck-id: 'unique-id'\n...\n\n# First Slide\n"
+            },
+            {
+                "filename": "decker.yaml",
+                "contents": "resource-pack: exe:decker\n\nreveal:\n\twidth: 1280\n\theight: 720\n\nexplain:\n\trecWidth: 1920\n\trecHeight: 1080\n\tcamWidth: 1280\n\tcamHeight: 720\n\tuseGreenScreen: false\n\nfeedback:\n\tserver: \"https://tramberend.bht-berlin.de/decker\"\n\nlang: de\n\nexclude-directories:\n\t- public\n"                
+            }
+        ]
+    }
+    ]
+}

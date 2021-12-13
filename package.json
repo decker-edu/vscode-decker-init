@@ -22,7 +22,7 @@
 		"menus": {
 			"explorer/context": [
 				{
-					"command": "decker-init.create",
+					"command": "decker-init.pick",
 					"group": "decker/init",
 					"when": "explorerResourceIsFolder"
 				}
@@ -30,15 +30,15 @@
 		},
 		"commandPalette": [
 			{
-				"command": "decker-init.create",
+				"command": "decker-init.pick",
 				"when": "false"
 			}
 		],
 		"commands": [
 			{
-				"command": "decker-init.create",
-				"title": "Create Decker Presentation",
-				"icon": "./res/rects.svg"
+				"command": "decker-init.pick",
+				"title": "Create Decker Project from Template"
+
 			}
 		]
 	},

@@ -1,86 +1,79 @@
 import * as vscode from 'vscode';
 import * as path from 'path';
+import * as fs from 'fs';
 
 export function activate(context: vscode.ExtensionContext) {
 
-
-	let disposable = vscode.commands.registerCommand('decker-init.create', (directory : vscode.Uri) => {
-		if(!directory) {
-			vscode.window.showErrorMessage("This command needs to be invoced from the explorer context menu.");
-			vscode.window.showInputBox({title: "Please enter a name for your presentation.", ignoreFocusOut: true, placeHolder: "Presentation Name"}).then((input) => {
-				if(!input) {
-					vscode.window.showInformationMessage("Creation cancelled by user.");
-				}
-			}).then(() => {
-				vscode.window.showInputBox({});
-			});
-			return;
-		}
-		let create : vscode.WorkspaceEdit = new vscode.WorkspaceEdit();
-		let yaml : string = path.join(directory.fsPath, "decker.yaml");
-		let md : string = path.join(directory.fsPath, "rename-deck.md");
-		let yamlUri = vscode.Uri.file(yaml);
-		let mdUri = vscode.Uri.file(md);
-		create.createFile(yamlUri, {overwrite: false});
-		create.createFile(mdUri, {overwrite: false});
-		vscode.workspace.applyEdit(create).then((success) => {
-			if(!success) {
-				vscode.window.showErrorMessage(`Unable to create the neccessary files. Probably they already exist in the chosen directory.`);
-			} else {
-				vscode.window.showInformationMessage(`Initialized decker presentation in ${directory.fsPath}`);
-				let contents : vscode.WorkspaceEdit = new vscode.WorkspaceEdit();
-				contents.insert(yamlUri, new vscode.Position(0,0), yamlTemplate, undefined);
-				contents.insert(mdUri, new vscode.Position(0,0), mdTemplate, undefined);
-		
-				vscode.workspace.applyEdit(contents).then((success) => {
-					if(!success) {
-						vscode.window.showErrorMessage(`Error while filling created files with content.`);
-					}
-				}, (error) => {
-					console.error(error);
-				});
+	let pick = vscode.commands.registerCommand('decker-init.pick', (directory : vscode.Uri) => {
+		fs.readFile(context.extensionPath + "/res/templates.json", (err, data) => {
+			if(err) {
+				console.error(err);
 			}
+			let json = JSON.parse(data.toString());
+			let templates = json.templates;
+			let names = templates.map((item : any) => item.name);
+			vscode.window.showQuickPick(names).then(async (pick) => {
+				if(!pick) {
+					vscode.window.showInformationMessage("Template creation was cancelled by user.");
+					return;
+				}
+				let choice = templates.find((item : any) => item.name === pick);
+				let inputs = choice.inputs;
+				let map : Record<string, string> = {};
+				for(const input of inputs) {
+					let name : string = input.name;
+					let description = input.description;
+					let placeholder = input.placeholder;
+					let userinput : string | undefined = await vscode.window.showInputBox({title: description, ignoreFocusOut: true, placeHolder: placeholder});
+					if(!userinput) {
+						continue;	
+					}
+					map[name] = userinput;
+				}
+				let files = choice.files;
+				let create : vscode.WorkspaceEdit = new vscode.WorkspaceEdit();
+				for(let i = 0; i < files.length; i++) {
+					let filename : string = files[i].filename;
+					filename = fillPlaceholders(filename, map);
+					let filepath = path.join(directory.fsPath, filename);
+					let uri = vscode.Uri.file(filepath);
+					create.createFile(uri, {overwrite: false});
+				}
+				vscode.workspace.applyEdit(create).then((success) => {
+					if(!success) {
+						vscode.window.showErrorMessage("Can not create all necessary files for this template.");
+						return;
+					}
+					let inserts : vscode.WorkspaceEdit = new vscode.WorkspaceEdit();
+					for(let i = 0; i < files.length ; i++) {
+						let filename : string = files[i].filename;
+						filename = fillPlaceholders(filename, map);
+						let filepath = path.join(directory.fsPath, filename);
+						let uri = vscode.Uri.file(filepath);
+						let contents : string = files[i].contents;
+						contents = fillPlaceholders(contents, map);
+						inserts.insert(uri, new vscode.Position(0,0), contents);
+					}
+					vscode.workspace.applyEdit(inserts).then((success) => {
+						if(!success) {
+							vscode.window.showErrorMessage("Can not fill the created files with content.");
+							return;
+						}
+					});
+				});
+			});
 		});
 	});
 
-	context.subscriptions.push(disposable);
+	context.subscriptions.push(pick);
 }
 
-const yamlTemplate : string = String.raw
-`resource-pack: exe:decker
-
-reveal:
-  width: 1280
-  height: 720
-
-explain:
-  recWidth: 1920
-  recHeight: 1080
-  camWidth: 1280
-  camHeight: 720
-  useGreenScreen: false
-
-feedback:
-  server: "https://tramberend.bht-berlin.de/decker"
-
-lang: de
-
-exclude-directories:
-- public
-
-`;
-
-const mdTemplate : string = String.raw
-`---
-title:        Deck Title
-subtitle:     Optional Subtitle (delete this line if you do not want one)
-author:       Author Name
-affiliation:  Optional Affilation Name (delete this line if you have no affilation)
-feedback:
-  deck-id:  'unique-id'
-...
-
-# First Slide
-`;
+function fillPlaceholders(str : string, map : Record<string, string>) : string {
+	let result = str;
+	for(const key in map) {
+		result = result.replace(`\$\{${key}\}`, map[key]);
+	}
+	return result;
+}
 
 export function deactivate() {}
