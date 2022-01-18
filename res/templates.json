@@ -24,15 +24,15 @@
                 "description": "Enter the name of the author.",
                 "placeholder": "Author Name"
             },            {
-                "name": "affilation",
-                "description": "Enter the name of your affilation or institute.",
-                "placeholder": "Affilation Name"
+                "name": "affiliation",
+                "description": "Enter the name of your affiliation or institute.",
+                "placeholder": "Affiliation Name"
             }
         ],
         "files": [
             {
                 "filename": "${filename}-deck.md",
-                "contents": "---\ntitle:\t\t${title}\nsubtitle:\t${subtitle}\nauthor:\t\t${author}\naffilation:\t${affilation}\n\nfeedback:\n\tdeck-id: 'unique-id'\n...\n\n# First Slide\n"
+                "contents": "---\ntitle:\t\t ${title}\nsubtitle:\t ${subtitle}\nauthor:\t\t ${author}\taffiliation: ${affiliation}\n...\n\n# First Slide\n"
             },
             {
                 "filename": "decker.yaml",

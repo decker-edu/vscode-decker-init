@@ -2,7 +2,7 @@
   "name": "decker-init",
 	"displayName": "Decker Init",
 	"description": "Allows the creation and initialisation of default decker project directories.",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"publisher": "decker-edu",
 	"repository": {
 	  "type": "git",
