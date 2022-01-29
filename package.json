@@ -2,11 +2,11 @@
   "name": "decker-init",
 	"displayName": "Decker Init",
 	"description": "Allows the creation and initialisation of default decker project directories.",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"publisher": "decker-edu",
 	"repository": {
 	  "type": "git",
-	  "url": "https://github.com/salbeira/vscode-decker-init"
+	  "url": "https://github.com/decker-edu/vscode-decker-init"
 	},
 	"engines": {
 		"vscode": "^1.62.0"
