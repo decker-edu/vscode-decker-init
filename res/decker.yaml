@@ -1,0 +1,16 @@
+resource-pack: exe:decker
+
+title:        ${title}
+author:       ${author}
+affiliation:  ${affiliation}
+
+feedback:
+  base-url: 'https://'
+
+poll-server: 'wss://'
+
+caption-server: 'https://'
+speech-recognition-language: de-DE
+
+static-resource-dirs:
+  - images

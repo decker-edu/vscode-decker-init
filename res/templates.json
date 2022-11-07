@@ -32,11 +32,11 @@
         "files": [
             {
                 "filename": "${filename}-deck.md",
-                "contents": "---\ntitle:\t\t ${title}\nsubtitle:\t ${subtitle}\nauthor:\t\t ${author}\taffiliation: ${affiliation}\n...\n\n# First Slide\n"
+                "sourcefile": "deck.md"
             },
             {
                 "filename": "decker.yaml",
-                "contents": "resource-pack: exe:decker\n\nreveal:\n\twidth: 1280\n\theight: 720\n\nexplain:\n\trecWidth: 1920\n\trecHeight: 1080\n\tcamWidth: 1280\n\tcamHeight: 720\n\tuseGreenScreen: false\n\nfeedback:\n\tserver: \"https://tramberend.bht-berlin.de/decker\"\n\nlang: de\n\nexclude-directories:\n\t- public\n"                
+                "sourcefile": "decker.yaml"
             }
         ]
     }
