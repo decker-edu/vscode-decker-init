@@ -1,0 +1,22 @@
+{
+  "Template creation was cancelled by user.": "Erstellung aus Vorlage wurde von Nutzer abgebrochen.",
+  "{destfile} already exists. Overwrite?": "{destfile} existiert bereits. Überschreiben?",
+  "Overwrite {destfile}?": "{destfile} überschreiben?",
+  "Yes": "Ja",
+  "No": "Nein",
+  "Create an empty decker project": "Leeres Deckerproject erstellen",
+  "Create a new deck": "Neuen Foliensatz erstellen",
+  "Create a new webpage": "Neue Webseite erstellen",
+  "Enter the filename of your slides.": "Bitte geben Sie den Namen der Datei der Präsentation an.",
+  "Enter the filename of the page": "Bitte geben Sie den Dateinamen der Webseite an.",
+  "Enter the title of your slides.": "Bitte geben Sie den Titel der Präsentation an.",
+  "Enter the title of the page.": "Bitte geben Sie den Titel der Webseite an.",
+  "Enter the subtitle of your slides.": "Bitte geben Sie den Nebentitel der Präsentation an. (Optional)",
+  "Enter the name of the author.": "Bitte geben Sie die Namen der Autoren der Präsentation an.",
+  "Enter the name of your affiliation or institute.": "Bitte geben Sie den Namen Ihrer Organisation an. (Optional)",
+  "Filename": "Dateiname",
+  "Title": "Titel",
+  "Subtitle": "Nebentitel",
+  "Author Name": "Autor*in",
+  "Affiliation Name": "Organisation"
+}

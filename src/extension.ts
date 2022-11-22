@@ -2,6 +2,23 @@ import * as vscode from 'vscode';
 import * as path from 'path';
 import * as fs from 'fs';
 
+declare interface TemplateData {
+    name: string,
+    inputs: InputData[]
+}
+
+declare interface InputData {
+    name: string,
+    description: string,
+    placeholder: string,
+	required: boolean
+}
+
+function isUnset(thing : string | undefined) : boolean {
+	if(!thing || thing === "") return true;
+	return false;
+}
+
 export function activate(context: vscode.ExtensionContext) {
 
 	let pick = vscode.commands.registerCommand('decker-init.pick', (directory : vscode.Uri) => {
@@ -11,56 +28,57 @@ export function activate(context: vscode.ExtensionContext) {
 			}
 			let json = JSON.parse(data.toString());
 			let templates = json.templates;
-			let names = templates.map((item : any) => item.name);
+			let names = templates.map((item : TemplateData) => {
+				return vscode.l10n.t(item.name);
+			});
 			vscode.window.showQuickPick(names).then(async (pick) => {
 				if(!pick) {
-					vscode.window.showInformationMessage("Template creation was cancelled by user.");
+					vscode.window.showInformationMessage(vscode.l10n.t("Template creation was cancelled by user."));
 					return;
 				}
-				let choice = templates.find((item : any) => item.name === pick);
-				let inputs = choice.inputs;
+				let choice = templates.find((item : TemplateData) => vscode.l10n.t(item.name) === pick);
+				let inputs : InputData[] = choice.inputs;
 				let map : Record<string, string> = {};
 				for(const input of inputs) {
 					let name : string = input.name;
-					let description = input.description;
-					let placeholder = input.placeholder;
+					let description = vscode.l10n.t(input.description);
+					let placeholder = vscode.l10n.t(input.placeholder);
 					let userinput : string | undefined = await vscode.window.showInputBox({title: description, ignoreFocusOut: true, placeHolder: placeholder});
-					if(!userinput) {
-						continue;	
+					if(isUnset(userinput)) {
+						if(input.required) {
+							map[name] = "undefined";
+						} else {
+							map[name] = "";
+						}
+					} else if(userinput) {
+						map[name] = userinput;
 					}
-					map[name] = userinput;
 				}
 				let files = choice.files;
-				let create : vscode.WorkspaceEdit = new vscode.WorkspaceEdit();
-				for(let i = 0; i < files.length; i++) {
-					let filename : string = files[i].filename;
-					filename = fillPlaceholders(filename, map);
-					let filepath = path.join(directory.fsPath, filename);
-					let uri = vscode.Uri.file(filepath);
-					create.createFile(uri, {overwrite: false});
-				}
-				vscode.workspace.applyEdit(create).then((success) => {
-					if(!success) {
-						vscode.window.showErrorMessage("Can not create all necessary files for this template.");
-						return;
-					}
-					let inserts : vscode.WorkspaceEdit = new vscode.WorkspaceEdit();
-					for(let i = 0; i < files.length ; i++) {
-						let filename : string = files[i].filename;
-						filename = fillPlaceholders(filename, map);
-						let filepath = path.join(directory.fsPath, filename);
-						let uri = vscode.Uri.file(filepath);
-						let contents : string = files[i].contents;
-						contents = fillPlaceholders(contents, map);
-						inserts.insert(uri, new vscode.Position(0,0), contents);
-					}
-					vscode.workspace.applyEdit(inserts).then((success) => {
-						if(!success) {
-							vscode.window.showErrorMessage("Can not fill the created files with content.");
-							return;
+				for(const file of files) {
+					if(file.directory) {
+						const dirname = fillPlaceholders(file.filename, map);
+						const dirpath = path.join(directory.fsPath, dirname);
+						if(!fs.existsSync(dirpath)) {
+							fs.mkdirSync(dirpath);
 						}
-					});
-				});
+					} else {
+						const filename = fillPlaceholders(file.filename, map);
+						const sourcefile = path.join(context.extensionPath, "res", file.sourcefile);
+						const destfile = path.join(directory.fsPath, filename);
+						if(fs.existsSync(destfile)) {
+							const answer = await vscode.window.showInformationMessage(vscode.l10n.t("{destfile} already exists. Overwrite?", {destfile}), {detail: vscode.l10n.t("Overwrite {destfile}?", {destfile}), modal: true}, vscode.l10n.t("Yes"), vscode.l10n.t("No"));
+							if(!answer || answer === vscode.l10n.t("No")) {
+								continue;
+							}
+						}
+						fs.copyFileSync(sourcefile, destfile);
+						const buffer = fs.readFileSync(destfile);
+						const content = buffer.toString("utf-8");
+						const replacement = fillPlaceholders(content, map);
+						fs.writeFileSync(destfile, replacement);
+					}
+				}
 			});
 		});
 	});

@@ -2,31 +2,37 @@
     "templates":
     [
     {
-        "name": "Create a new blank presentation",
+        "name": "Create an empty decker project",
         "inputs": [
             {
                 "name": "filename",
                 "description": "Enter the filename of your slides.",
-                "placeholder": "Filename"
+                "placeholder": "Filename",
+                "required": true
             },
             {
                 "name": "title",
                 "description": "Enter the title of your slides.",
-                "placeholder": "Title"
+                "placeholder": "Title",
+                "required": true
             },
             {
                 "name": "subtitle",
                 "description": "Enter the subtitle of your slides.",
-                "placeholder": "Subtitle"
+                "placeholder": "Subtitle",
+                "required": false
             },
             {
                 "name": "author",
                 "description": "Enter the name of the author.",
-                "placeholder": "Author Name"
-            },            {
+                "placeholder": "Author Name",
+                "required": true
+            },
+            {
                 "name": "affiliation",
                 "description": "Enter the name of your affiliation or institute.",
-                "placeholder": "Affiliation Name"
+                "placeholder": "Affiliation Name",
+                "required": false
             }
         ],
         "files": [
@@ -37,6 +43,62 @@
             {
                 "filename": "decker.yaml",
                 "sourcefile": "decker.yaml"
+            },
+            {
+                "filename": "images",
+                "directory": true
+            }
+        ]
+    },
+    {
+        "name": "Create a new deck",
+        "inputs": [
+            {
+                "name": "filename",
+                "description": "Enter the filename of your slides.",
+                "placeholder": "Filename",
+                "required": true
+            },
+            {
+                "name": "title",
+                "description": "Enter the title of your slides.",
+                "placeholder": "Title",
+                "required": true
+            },
+            {
+                "name": "subtitle",
+                "description": "Enter the subtitle of your slides.",
+                "placeholder": "Subtitle",
+                "required": false
+            }
+        ],
+        "files": [
+            {
+                "filename": "${filename}-deck.md",
+                "sourcefile": "deck.md"
+            }
+        ]
+    },
+    {
+        "name": "Create a new webpage",
+        "inputs": [
+            {
+                "name": "filename",
+                "description": "Enter the filename of the page.",
+                "placeholder": "Filename",
+                "required": true
+            },
+            {
+                "name": "title",
+                "description": "Enter the title of the page.",
+                "placeholder": "Title",
+                "required": true
+            }
+        ],
+        "files": [
+            {
+                "filename": "${filename}-page.md",
+                "sourcefile": "page.md"
             }
         ]
     }

@@ -1,0 +1,22 @@
+{
+  "Template creation was cancelled by user.": "Template creation was cancelled by user.",
+  "{destfile} already exists. Overwrite?": "{destfile} already exists. Overwrite?",
+  "Overwrite {destfile}?": "Overwrite {destfile}?",
+  "Yes": "Yes",
+  "No": "No",
+  "Create an empty decker project": "Create an empty decker project",
+  "Create a new deck": "Create a new deck",
+  "Create a new webpage": "Create a new webpage",
+  "Enter the filename of your slides.": "Enter the filename of your slides.",
+  "Enter the filename of the page.": "Enter the filename of the page.",
+  "Enter the title of your slides.": "Enter the title of your slides.",
+  "Enter the title of the page.": "Enter the title of the page.",
+  "Enter the subtitle of your slides.": "Enter the subtitle of your slides.",
+  "Enter the name of the author.": "Enter the name of the author.",
+  "Enter the name of your affiliation or institute.": "Enter the name of your affiliation or institute.",
+  "Filename": "Filename",
+  "Title": "Title",
+  "Subtitle": "Subtitle",
+  "Author Name": "Author Name",
+  "Affiliation Name": "Affiliation Name"
+}
