@@ -1,0 +1,121 @@
+reveal:
+  backgroundTransition: "none"
+  center: true
+  controls: true
+  fragmentInURL: true
+  fragments: true
+  hash: true
+  help: true
+  hideCursorTime: 2000
+  hideInactiveCursor: true
+  history: false
+  keyboard: true
+  margin: 0.05
+  overview: true
+  progress: true
+  slideNumber: true
+  touch: true
+  transition: "slide" # none/fade/slide/convex/concave/zoom
+  vertical-slides: true
+  viewDistance: 2
+  width: 1280
+  height: 720
+
+template:
+  favicon: support/icons/favicon.ico
+
+chart:
+  defaults:
+    font: { size: 20 }
+    plugins:
+      colorschemes:
+        scheme: "tableau.Classic10"
+      title:
+        font: { weight: "normal", size: 30 }
+      legend:
+        position: "bottom"
+
+menu:
+  side: "left"
+  width: "wide"
+  numbers: true
+  titleSelector: "h1"
+  useTextContentForMissingTitles: false
+  hideMissingTitles: false
+  markers: false
+  custom: false
+  themes: false
+  transitions: false
+  openButton: true
+  openSlideNumber: false
+  keyboard: true
+  sticky: false
+  autoOpen: true
+  delayInit: false
+  openOnInit: false
+  loadIcons: false
+
+lang: de
+title: <Undefined>
+
+# progress bar on index page
+# progress:
+  # selector: "a[href$='-deck.html']"
+  # insert: after
+progress: true
+
+math:
+  scale: 1
+  
+# Language dictionary. Currently for quiz elements
+dictionary:
+  de:
+    exam:
+      Easy: Leicht
+      Hard: Schwer
+      Medium: Mittelschwer
+      again-button: Nochmal
+      placeholder: Antwort eingeben
+      points: Punkte
+      solution: Lösung
+      solve-button: Lösen
+      reset-button: Zurücksetzen
+      qrcode-button: QRCOde
+      poll-button: Poll
+      stop-button: Stopp
+    quiz:
+      solution: Lösung
+      reset-button: Zurücksetzen
+      input-placeholder: Eingeben und 'Enter'
+      qmi-drag-hint: Objekte per Drag&Drop ziehen...
+      qmi-drop-hint: ...und hier in die richtige Kategorie einsortieren.
+      solve-button: Lösung
+  en:
+    exam:
+      Easy: Easy
+      Hard: Hard
+      Medium: Medium
+      again-button: Again
+      placeholder: Type in answer
+      points: Points
+      solution: Solution
+      solve-button: Solve
+      reset-button: Reset
+      qrcode-button: QRCOde
+      poll-button: Poll
+      stop-button: Stop
+    quiz:
+      solution: Show Solution
+      reset-button: Reset
+      input-placeholder: Type and press 'Enter'
+      qmi-drag-hint: Drag items from here...
+      qmi-drop-hint: ...and put them here into the correct category.
+      solution-button: Show Solution
+
+test:
+  only-default: From default.yaml
+  default-decker: From default.yaml
+  default-decker-deck: From default.yaml
+  merge-list:
+    - This line is from default.yaml
+  some-value: This line is from default.yaml

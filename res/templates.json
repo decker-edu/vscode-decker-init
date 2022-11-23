@@ -101,6 +101,35 @@
                 "sourcefile": "page.md"
             }
         ]
+    },
+    {
+        "name": "Create a new resource pack",
+        "inputs": [
+            {
+                "name": "packname",
+                "description": "Enter the name of your pack.",
+                "placeholder": "Packname",
+                "required": true
+            }
+        ],
+        "files": [
+            {
+                "filename": "${packname}",
+                "directory": true
+            },
+            {
+                "filename": "${packname}/support",
+                "directory": true
+            },
+            {
+                "filename": "${packname}/template",
+                "directory": true
+            },
+            {
+                "filename": "${packname}/template/default.yaml",
+                "sourcefile": "default.yaml"
+            }
+        ]
     }
     ]
 }
