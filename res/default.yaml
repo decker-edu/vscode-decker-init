@@ -80,7 +80,7 @@ dictionary:
       solution: Lösung
       solve-button: Lösen
       reset-button: Zurücksetzen
-      qrcode-button: QRCOde
+      qrcode-button: QRCode
       poll-button: Poll
       stop-button: Stopp
     quiz:
@@ -101,7 +101,7 @@ dictionary:
       solution: Solution
       solve-button: Solve
       reset-button: Reset
-      qrcode-button: QRCOde
+      qrcode-button: QRCode
       poll-button: Poll
       stop-button: Stop
     quiz:

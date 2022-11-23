@@ -1,7 +1,7 @@
 {
   "name": "decker-init",
   "displayName": "Decker Init",
-  "description": "Allows the creation and initialisation of default decker project directories.",
+  "description": "%extension.decker-init.package.description%.",
   "version": "0.0.4",
   "publisher": "decker-edu",
   "repository": {
@@ -68,7 +68,6 @@
     "ts-loader": "^9.3.1",
     "typescript": "4.7.4",
     "vsce": "^2.11.0",
-    "vscode-nls-dev": "^4.0.1",
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0"
   },

@@ -1,3 +1,4 @@
 {
+    "extension.decker-init.package.description": "Allows creation of decker projects, files and configuration from interactive templates.",
     "extension.decker-init.pick.title": "Create Decker Files from Template"
 }
