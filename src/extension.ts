@@ -15,7 +15,9 @@ declare interface InputData {
 }
 
 function isUnset(thing : string | undefined) : boolean {
-	if(!thing || thing === "") return true;
+	if(!thing || thing === "") {
+		return true;
+	}
 	return false;
 }
 
