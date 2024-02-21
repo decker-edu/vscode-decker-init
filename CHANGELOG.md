@@ -2,7 +2,9 @@
 
 All notable changes to the "decker-init" extension will be documented in this file.
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+## [0.0.7]
+
+- Fix typos and add ticks around placeholders in yaml configs.
 
 ## [0.0.5]
 

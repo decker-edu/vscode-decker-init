@@ -2,7 +2,7 @@
   "name": "decker-init",
   "displayName": "Decker Init",
   "description": "Allows creation of decker projects, files and configuration from interactive templates.",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "publisher": "decker-edu",
   "repository": {
     "type": "git",

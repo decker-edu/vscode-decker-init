@@ -1,7 +1,7 @@
-resource-pack: exe:decker
+resource-pack: 'exe:decker' # Alternatives: 'exe:tudo', 'exe:mono' or 'exe:nwburg'
 
-author:       ${author}
-affiliation:  ${affiliation}
+author:       '${author}'
+affiliation:  '${affiliation}'
 
 # feedback:
 #   base-url: 'https://'
@@ -9,7 +9,7 @@ affiliation:  ${affiliation}
 # poll-server: 'wss://'
 
 # caption-server: 'https://'
-# speech-recognition-language: de-DE
+# speech-recognition-language: 'de-DE'
 
 static-resource-dirs:
-  - images
+  - 'images'

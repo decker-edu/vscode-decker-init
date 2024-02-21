@@ -1,10 +1,10 @@
 {
-  "Template creation was cancelled by user.": "Erstellung aus Vorlage wurde von Nutzer abgebrochen.",
+  "Template creation was cancelled by user.": "Erstellung aus Vorlage wurde vom Nutzer abgebrochen.",
   "{destfile} already exists. Overwrite?": "{destfile} existiert bereits. Überschreiben?",
   "Overwrite {destfile}?": "{destfile} überschreiben?",
   "Yes": "Ja",
   "No": "Nein",
-  "Create an empty decker project": "Leeres Deckerproject erstellen",
+  "Create an empty decker project": "Neues Deckerprojekt einrichten",
   "Create a new deck": "Neuen Foliensatz erstellen",
   "Create a new webpage": "Neue Webseite erstellen",
   "Create a new resource pack": "Neues Ressourcenpaket erstellen",
